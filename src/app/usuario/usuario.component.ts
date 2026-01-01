@@ -13,7 +13,9 @@ export class UsuarioComponent implements OnInit{
   ngOnInit():void{
     this.datos=this.usuario.listar()
     this.cadena=this.usuario.listar_cadenas()
-    console.log(this.datos)
-    console.log(this.cadena)
+    console.log(this.datos,this.cadena)
+    this.usuario.listar_usuarios().subscribe(data=>{
+      console.log(data)
+    })
   }
 }

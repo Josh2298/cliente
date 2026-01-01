@@ -12,6 +12,7 @@ import { PruebaComponent } from './prueba/prueba.component';
 import { Prueba2Component } from './prueba2/prueba2.component';
 import { Prueba3Component } from './prueba3/prueba3.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ToastrModule.forRoot(),
   ],
   providers: [],
