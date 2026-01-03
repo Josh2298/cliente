@@ -9,7 +9,6 @@ import { Usuario } from '../models/usuario';
 export class UsuarioService {
 
   constructor(private http:HttpClient) { }
-  usuario:Usuario[]=[]
   listar():number[]{
     return [1,2,5,6]
   }
@@ -18,5 +17,8 @@ export class UsuarioService {
   }
   listar_usuarios():Observable<Usuario[]>{
     return this.http.get<Usuario[]>('http://localhost:8000/api/usuario')
+  }
+  eliminar(id:number):Observable<Usuario[]>{
+    return this.http.delete<Usuario[]>('http://localhost:8000/api/usuario/'+id)
   }
 }

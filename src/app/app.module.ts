@@ -13,6 +13,8 @@ import { Prueba2Component } from './prueba2/prueba2.component';
 import { Prueba3Component } from './prueba3/prueba3.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ClienteComponent } from './cliente/cliente.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -20,13 +22,15 @@ import { HttpClientModule } from '@angular/common/http';
     PruebaComponent,
     Prueba2Component,
     Prueba3Component,
-    UsuarioComponent
+    UsuarioComponent,
+    ClienteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatIconModule,
     ToastrModule.forRoot(),
   ],
   providers: [],
