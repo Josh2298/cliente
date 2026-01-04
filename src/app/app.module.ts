@@ -15,6 +15,8 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ClienteComponent } from './cliente/cliente.component';
 import { MatIconModule } from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
+import { UsuarioFormComponent } from './usuario/usuario-form/usuario-form.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +25,15 @@ import { MatIconModule } from '@angular/material/icon';
     Prueba2Component,
     Prueba3Component,
     UsuarioComponent,
-    ClienteComponent
+    ClienteComponent,
+    UsuarioFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatDialogModule,
     MatIconModule,
     ToastrModule.forRoot(),
   ],

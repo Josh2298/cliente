@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../services/usuario.service';
 import { Usuario } from '../models/usuario';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import  Swal from 'sweetalert2';
+import { UsuarioFormComponent } from './usuario-form/usuario-form.component';
 
 @Component({
   selector: 'app-usuario',
@@ -12,7 +15,7 @@ export class UsuarioComponent implements OnInit{
   usuarios:Usuario[]=[]
   datos:number[]=[]
   cadena:string[]=[]
-  constructor(private usuarioService:UsuarioService){}
+  constructor(private usuarioService:UsuarioService,public dialog: MatDialog){}
   llenar_imagen(nombre:string):string{
     return 'http://localhost:8000/api/usuario/imagen/'+nombre
   }
@@ -40,7 +43,7 @@ export class UsuarioComponent implements OnInit{
           this.usuarios=data
         })
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelled','No se elimino el registro.)', 'error');
+        Swal.fire('Cancelled','No se elimino el registro :)', 'error');
       }
     });
   }
@@ -60,8 +63,16 @@ export class UsuarioComponent implements OnInit{
       if (result.value) {
         Swal.fire('Removed!', 'Product removed successfully.', 'success');
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelled','Product stil in our database.)', 'error');
+        Swal.fire('Error','Product stil in our database.)', 'error');
       }
+    });
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(UsuarioFormComponent,{data:this.usuarios[0]});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 }
