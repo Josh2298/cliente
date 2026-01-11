@@ -17,6 +17,9 @@ import { ClienteComponent } from './cliente/cliente.component';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import { UsuarioFormComponent } from './usuario/usuario-form/usuario-form.component';
+import { MatButtonModule } from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,9 @@ import { UsuarioFormComponent } from './usuario/usuario-form/usuario-form.compon
     HttpClientModule,
     MatDialogModule,
     MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
     ToastrModule.forRoot(),
   ],
   providers: [],
