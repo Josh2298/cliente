@@ -3,9 +3,9 @@
   <form [formGroup]="agregar">
   <mat-form-field appearance="fill">
     <mat-label>C.I.</mat-label>
-    <input matInput placeholder="Placeholder">
+    <input matInput placeholder="Placeholder" formControlName="ci">
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
+    <mat-error *ngIf="ci?.invalid">{{error_apellido()}}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -17,37 +17,37 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Apellido</mat-label>
-    <input matInput placeholder="Placeholder">
+    <input matInput placeholder="Placeholder" formControlName="apellido">
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
+    <mat-error *ngIf="apellido?.invalid">{{error_apellido()}}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Username</mat-label>
-    <input matInput placeholder="Placeholder">
+    <input matInput placeholder="Placeholder" formControlName="username">
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
+    <mat-error *ngIf="username?.invalid">{{error_username()}}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Password</mat-label>
-    <input matInput placeholder="Placeholder" type="password">
+    <input matInput placeholder="Placeholder" type="password" formControlName="password">
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
+    <mat-error *ngIf="password?.invalid">{{error_password()}}</mat-error>
   </mat-form-field>
   
   <mat-form-field appearance="fill">
     <mat-label>Rol</mat-label>
-    <input matInput placeholder="Placeholder">
+    <input matInput placeholder="Placeholder" formControlName="rol">
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     <mat-hint>Hint</mat-hint>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Imagen</mat-label>
-    <input matInput placeholder="Placeholder">
+    <input matInput placeholder="Placeholder" formControlName="imagen">
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
+    <mat-error *ngIf="imagen?.invalid">{{error_imagen()}}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
