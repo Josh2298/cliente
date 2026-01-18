@@ -1,5 +1,6 @@
-<h2 mat-dialog-title>Install Angular</h2>
+<h2 mat-dialog-title>Crear Usuario</h2>
 <mat-dialog-content class="mat-typography">
+  <form [formGroup]="agregar">
   <mat-form-field appearance="fill">
     <mat-label>C.I.</mat-label>
     <input matInput placeholder="Placeholder">
@@ -9,9 +10,9 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Nombre</mat-label>
-    <input matInput placeholder="Placeholder">
+    <input matInput placeholder="Placeholder" formControlName="nombre">
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
+    <mat-error *ngIf="nombre?.invalid">{{error_nombre()}}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -51,11 +52,13 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Email</mat-label>
-    <input matInput placeholder="Placeholder" type="email">
+    <input matInput placeholder="Placeholder" type="email" formControlName="email">
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
+    <mat-error *ngIf="email?.invalid">{{error_email()}}</mat-error>
   </mat-form-field>
+</form>
+</mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Agregar</button>
+  <button mat-dialog-close class="btn btn-secondary">Cancelar</button>
+  <button [mat-dialog-close]="agregar" cdkFocusInitial class="btn btn-primary" [disabled]="agregar.invalid">Agregar</button>
 </mat-dialog-actions>

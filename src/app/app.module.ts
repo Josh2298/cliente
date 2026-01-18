@@ -20,6 +20,7 @@ import { UsuarioFormComponent } from './usuario/usuario-form/usuario-form.compon
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {MatInputModule} from '@angular/material/input';
     HttpClientModule,
     MatDialogModule,
     MatIconModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
