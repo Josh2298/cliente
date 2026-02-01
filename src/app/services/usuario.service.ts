@@ -21,4 +21,10 @@ export class UsuarioService {
   eliminar(id:number):Observable<Usuario[]>{
     return this.http.delete<Usuario[]>('http://localhost:8000/api/usuario/'+id)
   }
+  agregar(formulario:Usuario):Observable<Usuario[]>{
+    return this.http.post<Usuario[]>('http://localhost:8000/api/usuario/',formulario)
+  }
+  actualizar(formulario:Usuario,id:number):Observable<Usuario[]>{
+    return this.http.put<Usuario[]>('http://localhost:8000/api/usuario/'+id,formulario)
+  }
 }

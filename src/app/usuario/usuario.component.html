@@ -1,7 +1,7 @@
 <hr>
   <H4>USUARIOS</H4>
 <hr>
-<button mat-button (click)="openDialog()">Open dialog</button>
+<button mat-button (click)="openDialog()">Crear Usuario</button>
 
 <table class="table">
   <thead class="table-dark table-sm">
@@ -26,7 +26,7 @@
             <img src="{{llenar_imagen(item.imagen)}}" height="50px" width="50px" alt="">
         </td>
         <td>
-            <button class="btn btn-sm btn-success"><mat-icon>refresh</mat-icon></button>
+            <button class="btn btn-sm btn-success" (click)="actualizar(item)"><mat-icon>refresh</mat-icon></button>
             <button class="btn btn-sm btn-danger" (click)="eliminar(item)"><mat-icon>delete_sweep</mat-icon></button>
         </td>
     </tr>
