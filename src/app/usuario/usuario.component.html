@@ -23,7 +23,7 @@
         <td>{{item.username}}</td>
         <td>{{item.rol}}</td>
         <td>
-            <img src="{{llenar_imagen(item.imagen)}}" height="50px" width="50px" alt="">
+            <img appImagenRota src="{{llenar_imagen(item.imagen)}}" height="50px" width="50px" alt="">
         </td>
         <td>
             <button class="btn btn-sm btn-success" (click)="actualizar(item)"><mat-icon>refresh</mat-icon></button>

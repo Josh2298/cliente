@@ -77,7 +77,7 @@ export class UsuarioComponent implements OnInit{
       imagen:'',
       email:''
     }
-    const dialogRef = this.dialog.open(UsuarioFormComponent,{data:user});
+    const dialogRef = this.dialog.open(UsuarioFormComponent,{data:{usuario:user,texto:"Crear Usuario"}});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result.value);
@@ -104,7 +104,7 @@ export class UsuarioComponent implements OnInit{
 
   actualizar(item:Usuario) {
     let user:Usuario
-    const dialogRef = this.dialog.open(UsuarioFormComponent,{data:item});
+    const dialogRef = this.dialog.open(UsuarioFormComponent,{data:{usuario:item,texto:"Editar Usuario"}});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result.value);

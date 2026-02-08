@@ -9,15 +9,23 @@ import { Usuario } from 'src/app/models/usuario';
   styleUrls: ['./usuario-form.component.css']
 })
 export class UsuarioFormComponent {
-  constructor(public dialogRef:MatDialogRef<UsuarioFormComponent>, @ Inject (MAT_DIALOG_DATA) public data:Usuario){
+  public name:string=""
+  public previsualizacion:string=""
+  texto:string=""
+  constructor(public dialogRef:MatDialogRef<UsuarioFormComponent>, @ Inject (MAT_DIALOG_DATA) public data:any){
+    this.texto=data.texto
     console.log(data)
-    this.ci?.setValue(data.ci)
-    this.nombre?.setValue(data.nombre)
-    this.apellido?.setValue(data.apellido)
-    this.username?.setValue(data.username)
-    this.password?.setValue(data.password)
-    this.rol?.setValue(data.rol)
-    this.imagen?.setValue(data.imagen)
+    this.ci?.setValue(data.usuario.ci)
+    this.nombre?.setValue(data.usuario.nombre)
+    this.apellido?.setValue(data.usuario.apellido)
+    this.username?.setValue(data.usuario.username)
+    this.password?.setValue(data.usuario.password)
+    this.rol?.setValue(data.usuario.rol)
+    //this.imagen?.setValue(data.imagen)
+    if(data.texto=="Editar Usuario")
+      this.password?.clearValidators
+    if(data.imagen!="")
+      this.previsualizacion='http://localhost:8000/api/usuario/imagen/'+data.imagen
     this.email?.setValue(data.email)
   }
   agregar=new FormGroup({
@@ -71,4 +79,18 @@ export class UsuarioFormComponent {
       return "Ingrese el formato de email"
     return ""
   }
+  cargarImagen(event:any):void{
+    console.log(event.target.files)
+    let file:File=<File>event.target.files[0]
+    this.name=file.name
+    this.previsualizar(file)
+  }
+  previsualizar(file:File):void{
+    const reader=new FileReader()
+    reader.onload=(e:any)=>{
+      this.previsualizacion=e.target.result
+    };
+    reader.readAsDataURL(file)
+    console.log(this.previsualizacion)
+  };
 }
