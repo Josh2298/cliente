@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Install Angular</h2>
+<h2 mat-dialog-title>Crear Usuario</h2>
 <mat-dialog-content class="mat-typography">
   <mat-form-field appearance="fill">
     <mat-label>C.I.</mat-label>
@@ -56,6 +56,6 @@
     <mat-hint>Hint</mat-hint>
   </mat-form-field>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Agregar</button>
+  <button mat-dialog-close class="btn btn-secondary">Cancelar</button>
+  <button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-primary">Agregar</button>
 </mat-dialog-actions>
