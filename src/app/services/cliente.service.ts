@@ -1,18 +1,14 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuario } from '../models/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class ClienteService {
 
   constructor(private http:HttpClient) { }
-  
-  //listar_usuarios():Observable<Usuario[]>{
-  //  return this.http.get<Usuario[]>('http://localhost:8000/api/usuario')
-  //}
   listarPorRol(rol: string): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`http://localhost:8000/api/usuario?rol=${rol}`);
   }

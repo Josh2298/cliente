@@ -3,9 +3,11 @@ export interface Usuario {
     ci:string,
     nombre:string,
     apellido:string,
-    username:string,
     password:string,
     rol:string,
     imagen:string,
-    email:string
+    email:string,
+    antecedentes:string,
+    medicamentos:string,
+    tratamientos:string
 }

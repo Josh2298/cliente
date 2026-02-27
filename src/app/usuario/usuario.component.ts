@@ -5,6 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import  Swal from 'sweetalert2';
 import { UsuarioFormComponent } from './usuario-form/usuario-form.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-usuario',
@@ -13,20 +14,18 @@ import { UsuarioFormComponent } from './usuario-form/usuario-form.component';
 })
 export class UsuarioComponent implements OnInit{
   usuarios:Usuario[]=[]
-  datos:number[]=[]
-  cadena:string[]=[]
-  constructor(private usuarioService:UsuarioService,public dialog: MatDialog){}
+  constructor(private usuarioService:UsuarioService,public dialog: MatDialog,private toatr:ToastrService){}
   llenar_imagen(nombre:string):string{
     return 'http://localhost:8000/api/usuario/imagen/'+nombre
   }
   ngOnInit():void{
-    this.datos=this.usuarioService.listar()
-    this.cadena=this.usuarioService.listar_cadenas()
-    console.log(this.datos,this.cadena)
-    this.usuarioService.listar_usuarios().subscribe(data=>{
-      this.usuarios=data
-      console.log(data)
-    })
+    //this.usuarioService.listar_usuarios().subscribe(data=>{
+    //  this.usuarios=data
+    //  console.log(data)
+    //})
+    this.usuarioService.listarPorRol('admin').subscribe(data => {
+      this.usuarios = data;
+    });
   }
   eliminar(item:Usuario):void{
     Swal.fire({
@@ -69,10 +68,81 @@ export class UsuarioComponent implements OnInit{
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(UsuarioFormComponent,{data:this.usuarios[0]});
+    let user:Usuario
+    user={
+      id:0,
+      ci:'',
+      nombre:'',
+      apellido:'',
+      password:'',
+      rol:'',
+      imagen:'',
+      email:'',
+      antecedentes:'',
+      medicamentos:'',
+      tratamientos:''
+    }
+    const dialogRef = this.dialog.open(UsuarioFormComponent,{data:{usuario:user,texto:"Crear Usuario"}});
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      console.log(result.value);
+      if(result.value!=undefined){
+        user={
+          id:0,
+          ci:result.value.ci,
+          nombre:result.value.nombre,
+          apellido:result.value.apellido,
+          password:result.value.password,
+          rol:'admin',
+          imagen:result.value.nombreImagen,
+          email:result.value.email,
+          antecedentes:result.value.antecedentes,
+          medicamentos:result.value.medicamentos,
+          tratamientos:result.value.tratamientos
+        }
+        this.usuarioService.agregar(user).subscribe(data=>{
+          this.usuarios=data
+          this.toatr.success('Exito','Registro Guardado')
+        },
+        error=>{
+          this.toatr.error('Error','Operacion Fallida')
+        })
+      }
+      else
+        this.toatr.error('Nota','Operacion Cancelada')
+    });
+  }
+
+  actualizar(item:Usuario) {
+    let user:Usuario
+    const dialogRef = this.dialog.open(UsuarioFormComponent,{data:{usuario:item,texto:"Editar Usuario"}});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result.value);
+      if(result.value!=undefined){
+        user={
+          id:item.id,
+          ci:result.value.ci,
+          nombre:result.value.nombre,
+          apellido:result.value.apellido,
+          password:result.value.password,
+          rol:result.value.rol,
+          imagen:result.value.nombreImagen,
+          email:result.value.email,
+          antecedentes:result.value.antecedentes,
+          medicamentos:result.value.medicamentos,
+          tratamientos:result.value.tratamientos
+        }
+        this.usuarioService.actualizar(user,item.id).subscribe(data=>{
+          this.usuarios=data
+          this.toatr.success('Exito','Registro Actualizado')
+        },
+        error=>{
+          this.toatr.error('Error','Operacion Fallida')
+        })
+      }
+      else
+        this.toatr.error('Nota','Operacion Cancelada')
     });
   }
 }

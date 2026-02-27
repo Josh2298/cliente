@@ -20,6 +20,18 @@ import { UsuarioFormComponent } from './usuario/usuario-form/usuario-form.compon
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import { ImagenRotaDirective } from './imagen-rota.directive';
+import { ProductoComponent } from './producto/producto.component';
+import { AsistenciaComponent } from './asistencia/asistencia.component';
+import { CajaComponent } from './caja/caja.component';
+import { CajaLogComponent } from './caja-log/caja-log.component';
+import { CategoriaComponent } from './categoria/categoria.component';
+import { HistorialCorporalComponent } from './historial-corporal/historial-corporal.component';
+import { ItemComponent } from './item/item.component';
+import { MembresiaComponent } from './membresia/membresia.component';
+import { PromocionComponent } from './promocion/promocion.component';
+import { VentaComponent } from './venta/venta.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +41,18 @@ import {MatInputModule} from '@angular/material/input';
     Prueba3Component,
     UsuarioComponent,
     ClienteComponent,
-    UsuarioFormComponent
+    UsuarioFormComponent,
+    ImagenRotaDirective,
+    ProductoComponent,
+    AsistenciaComponent,
+    CajaComponent,
+    CajaLogComponent,
+    CategoriaComponent,
+    HistorialCorporalComponent,
+    ItemComponent,
+    MembresiaComponent,
+    PromocionComponent,
+    VentaComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +61,7 @@ import {MatInputModule} from '@angular/material/input';
     HttpClientModule,
     MatDialogModule,
     MatIconModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,

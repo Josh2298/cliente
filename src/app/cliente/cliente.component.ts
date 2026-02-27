@@ -1,10 +1,139 @@
 import { Component } from '@angular/core';
+import { UsuarioService } from '../services/usuario.service';
+import { Usuario } from '../models/usuario';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import  Swal from 'sweetalert2';
+import { UsuarioFormComponent } from '../usuario/usuario-form/usuario-form.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cliente',
   templateUrl: './cliente.component.html',
   styleUrls: ['./cliente.component.css']
 })
-export class ClienteComponent {
+export class ClienteComponent{
+  clientes: Usuario[] = [];
+  constructor(private usuarioService:UsuarioService,public dialog: MatDialog,private toatr:ToastrService){}
 
+  ngOnInit(): void {
+    this.usuarioService.listarPorRol('cliente').subscribe(data => {
+        this.clientes = data;
+    });
+  }
+  /* eliminar(item:Usuario):void{
+      Swal.fire({
+        title: 'Estas seguro de eliminar?',
+        text: item.apellido+" "+item.nombre,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText: 'Cancelar',
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire('Eliminar', 'Usuario Eliminado correctamente.', 'success');
+          this.usuarioService.eliminar(item.id).subscribe(data=>{
+            this.usuarios=data
+          })
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire('Cancelled','No se elimino el registro :)', 'error');
+        }
+      });
+    }
+  
+    successNotification(){
+      Swal.fire('Hi', 'We have been informed!', 'success');
+    }
+    alertConfirmation() {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'This process is irreversible',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, go ahead',
+        cancelButtonText: 'No, let me think',
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire('Removed!', 'Product removed successfully.', 'success');
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire('Error','Product stil in our database.)', 'error');
+        }
+      });
+    }*/
+  
+    openDialog() {
+      let user:Usuario
+      user={
+        id:0,
+        ci:'',
+        nombre:'',
+        apellido:'',
+        password:'',
+        rol:'',
+        imagen:'',
+        email:'',
+        antecedentes:'',
+        medicamentos:'',
+        tratamientos:''
+      }
+      const dialogRef = this.dialog.open(UsuarioFormComponent,{data:{usuario:user,texto:"Crear Cliente"}});
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result.value);
+        if(result.value!=undefined){
+          user={
+            id:0,
+            ci:result.value.ci,
+            nombre:result.value.nombre,
+            apellido:result.value.apellido,
+            password:result.value.password,
+            rol:'cliente',
+            imagen:result.value.nombreImagen,
+            email:result.value.email,
+            antecedentes:result.value.antecedentes,
+            medicamentos:result.value.medicamentos,
+            tratamientos:result.value.tratamientos
+          }
+          this.usuarioService.agregar(user).subscribe(data=>{
+            this.clientes=data
+            this.toatr.success('Exito','Registro Guardado')
+          },
+          error=>{
+            this.toatr.error('Error','Operacion Fallida')
+          })
+        }
+        else
+          this.toatr.error('Nota','Operacion Cancelada')
+      });
+    }
+  /* 
+    actualizar(item:Usuario) {
+      let user:Usuario
+      const dialogRef = this.dialog.open(UsuarioFormComponent,{data:{usuario:item,texto:"Editar Usuario"}});
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result.value);
+        if(result.value!=undefined){
+          user={
+            id:item.id,
+            ci:result.value.ci,
+            nombre:result.value.nombre,
+            apellido:result.value.apellido,
+            password:result.value.password,
+            rol:result.value.rol,
+            imagen:result.value.nombreImagen,
+            email:result.value.email
+          }
+          this.usuarioService.actualizar(user,item.id).subscribe(data=>{
+            this.usuarios=data
+            this.toatr.success('Exito','Registro Actualizado')
+          },
+          error=>{
+            this.toatr.error('Error','Operacion Fallida')
+          })
+        }
+        else
+          this.toatr.error('Nota','Operacion Cancelada')
+      });
+    } */
 }
