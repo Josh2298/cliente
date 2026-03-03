@@ -5,7 +5,7 @@
     <mat-label>C.I.</mat-label>
     <input matInput placeholder="Placeholder" formControlName="ci">
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-error *ngIf="ci?.invalid">{{error_apellido()}}</mat-error>
+    <mat-error *ngIf="ci?.invalid">{{error_ci()}}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -27,13 +27,6 @@
     <input matInput placeholder="Placeholder" type="password" formControlName="password">
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     <mat-error *ngIf="password?.invalid">{{error_password()}}</mat-error>
-  </mat-form-field>
-  
-  <mat-form-field appearance="fill">
-    <mat-label>Rol</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="rol">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
   </mat-form-field>
 
   <!--<mat-form-field appearance="fill">
@@ -90,3 +83,7 @@
   </mat-form-field>
 </form>
 </mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-dialog-close class="btn btn-secondary">Cancelar</button>
+  <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid">Guardar</button>
+</mat-dialog-actions>

@@ -1,0 +1,61 @@
+<h2 mat-dialog-title>{{texto}}</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="agregar">
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="nombre">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-error *ngIf="nombre?.invalid">{{error_nombre()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Precio Compra</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="precio_compra">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-error *ngIf="precio_compra?.invalid">{{error_precio_compra()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Precio venta</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="precio_venta">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-error *ngIf="precio_venta?.invalid">{{error_precio_venta()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Cantidad Minima</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="cantidad_min">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-error *ngIf="cantidad_min?.invalid">{{error_cantidad_min()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Stock</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="stock">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-error *ngIf="stock?.invalid">{{error_stock()}}</mat-error>
+  </mat-form-field>
+<p>
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Imagen</mat-label>
+      <input matInput value={{name}}/>
+      <input
+        type="file"
+        id="fileInput"
+        name="fileInput"
+        accept="image/*"
+        (change)="cargarImagen($event)"
+        formControlName="imagen"
+      />
+    <mat-icon matSuffix>image</mat-icon>
+  </mat-form-field>
+</p>
+  <div class="text-center">
+    <img appImagenRota src={{previsualizacion}} alt="" height="100px" width="100px">
+  </div>
+</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-dialog-close class="btn btn-secondary">Cancelar</button>
+  <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid">Guardar</button>
+</mat-dialog-actions>

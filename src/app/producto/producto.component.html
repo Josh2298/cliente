@@ -1,1 +1,36 @@
-<p>producto works!</p>
+<hr>
+  <H4>PRODUCTOS</H4>
+<hr>
+<button mat-button (click)="openDialog()">Crear Producto</button>
+
+<table class="table">
+  <thead class="table-dark table-sm">
+    <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Precio Venta</th>
+        <th>Precio Compra</th>
+        <th>Cant. Min</th>
+        <th>Stock</th>
+        <th>Imagen</th>
+        <th>Opcion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of productos;let i=index">
+        <td>{{i+1}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.precio_compra}}</td>
+        <td>{{item.precio_venta}}</td>
+        <td>{{item.cantidad_min}}</td>
+        <td>{{item.stock}}</td>
+        <td>
+            <img appImagenRota src="{{llenar_imagen(item.imagen)}}" height="50px" width="50px" alt="">
+        </td>
+        <td>
+            <button class="btn btn-sm btn-success" (click)="actualizar(item)"><mat-icon>refresh</mat-icon></button>
+            <button class="btn btn-sm btn-danger" (click)="eliminar(item)"><mat-icon>delete_sweep</mat-icon></button>
+        </td>
+    </tr>
+  </tbody>
+</table>

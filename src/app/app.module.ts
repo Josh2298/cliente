@@ -32,6 +32,9 @@ import { ItemComponent } from './item/item.component';
 import { MembresiaComponent } from './membresia/membresia.component';
 import { PromocionComponent } from './promocion/promocion.component';
 import { VentaComponent } from './venta/venta.component';
+import { ProductoFormComponent } from './producto/producto-form/producto-form.component';
+import { LoginComponent } from './auth/login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,9 @@ import { VentaComponent } from './venta/venta.component';
     ItemComponent,
     MembresiaComponent,
     PromocionComponent,
-    VentaComponent
+    VentaComponent,
+    ProductoFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +71,7 @@ import { VentaComponent } from './venta/venta.component';
     MatFormFieldModule,
     MatInputModule,
     ToastrModule.forRoot(),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

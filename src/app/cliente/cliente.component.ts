@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../services/usuario.service';
 import { Usuario } from '../models/usuario';
 import {MatButtonModule} from '@angular/material/button';
@@ -12,16 +12,18 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './cliente.component.html',
   styleUrls: ['./cliente.component.css']
 })
-export class ClienteComponent{
+export class ClienteComponent implements OnInit{
   clientes: Usuario[] = [];
   constructor(private usuarioService:UsuarioService,public dialog: MatDialog,private toatr:ToastrService){}
-
+  llenar_imagen(nombre:string):string{
+    return 'http://localhost:8000/api/usuario/imagen/'+nombre
+  }
   ngOnInit(): void {
     this.usuarioService.listarPorRol('cliente').subscribe(data => {
         this.clientes = data;
     });
   }
-  /* eliminar(item:Usuario):void{
+    eliminar(item:Usuario):void{
       Swal.fire({
         title: 'Estas seguro de eliminar?',
         text: item.apellido+" "+item.nombre,
@@ -33,7 +35,7 @@ export class ClienteComponent{
         if (result.value) {
           Swal.fire('Eliminar', 'Usuario Eliminado correctamente.', 'success');
           this.usuarioService.eliminar(item.id).subscribe(data=>{
-            this.usuarios=data
+            this.clientes=data
           })
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           Swal.fire('Cancelled','No se elimino el registro :)', 'error');
@@ -59,7 +61,7 @@ export class ClienteComponent{
           Swal.fire('Error','Product stil in our database.)', 'error');
         }
       });
-    }*/
+    }
   
     openDialog() {
       let user:Usuario
@@ -106,7 +108,6 @@ export class ClienteComponent{
           this.toatr.error('Nota','Operacion Cancelada')
       });
     }
-  /* 
     actualizar(item:Usuario) {
       let user:Usuario
       const dialogRef = this.dialog.open(UsuarioFormComponent,{data:{usuario:item,texto:"Editar Usuario"}});
@@ -122,10 +123,13 @@ export class ClienteComponent{
             password:result.value.password,
             rol:result.value.rol,
             imagen:result.value.nombreImagen,
-            email:result.value.email
+            email:result.value.email,
+            antecedentes:result.value.antecedentes,
+            medicamentos:result.value.medicamentos,
+            tratamientos:result.value.tratamientos
           }
           this.usuarioService.actualizar(user,item.id).subscribe(data=>{
-            this.usuarios=data
+            this.clientes=data
             this.toatr.success('Exito','Registro Actualizado')
           },
           error=>{
@@ -135,5 +139,5 @@ export class ClienteComponent{
         else
           this.toatr.error('Nota','Operacion Cancelada')
       });
-    } */
+    }
 }

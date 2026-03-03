@@ -20,11 +20,11 @@ export class UsuarioFormComponent {
     this.nombre?.setValue(data.usuario.nombre)
     this.apellido?.setValue(data.usuario.apellido)
     this.password?.setValue(data.usuario.password)
-    this.rol?.setValue(data.usuario.rol)
+    //this.rol?.setValue(data.usuario.rol)
      this.email?.setValue(data.usuario.email)
     //this.imagen?.setValue(data.imagen)
-    if(data.imagen!="")
-      this.previsualizacion='http://localhost:8000/api/usuario/imagen/'+data.imagen
+    if(data.usuario.imagen!="")
+      this.previsualizacion='http://localhost:8000/api/usuario/imagen/'+data.usuario.imagen
     if(data.texto=="Editar Usuario"){
       this.password?.clearValidators()
       this.imagen?.clearValidators()
@@ -36,7 +36,6 @@ export class UsuarioFormComponent {
     nombre: new FormControl('',[Validators.required]),
     apellido: new FormControl('',[Validators.required]),
     password: new FormControl('',[Validators.required]),
-    rol: new FormControl('',[Validators.required]),
     imagen: new FormControl('',[Validators.required]),
     nombreImagen: new FormControl('',[]),
     email: new FormControl('',[Validators.required,Validators.email])
@@ -45,10 +44,15 @@ export class UsuarioFormComponent {
   get nombre(){return this.agregar.get('nombre')}
   get apellido(){return this.agregar.get('apellido')}
   get password(){return this.agregar.get('password')}
-  get rol(){return this.agregar.get('rol')}
+  //get rol(){return this.agregar.get('rol')}
   get imagen(){return this.agregar.get('imagen')}
   get nombreImagen(){return this.agregar.get('nombreImagen')}
   get email(){return this.agregar.get('email')}
+  error_ci():string{
+    if(this.ci?.hasError('required'))
+      return "Campo Obligatorio"
+    return ""
+  }  
   error_nombre():string{
     if(this.nombre?.hasError('required'))
       return "Campo Obligatorio"
@@ -73,7 +77,7 @@ export class UsuarioFormComponent {
     if(this.email?.hasError('required'))
       return "Campo Obligatorio"
     if(this.email?.hasError('email'))
-      return "Ingrese el formato de email"
+      return "Ingrese en formato de email"
     return ""
   }
   cargarImagen(event:any):void{
