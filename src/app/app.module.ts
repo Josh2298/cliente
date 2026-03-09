@@ -35,6 +35,12 @@ import { VentaComponent } from './venta/venta.component';
 import { ProductoFormComponent } from './producto/producto-form/producto-form.component';
 import { LoginComponent } from './auth/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { RouterModule } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -57,7 +63,9 @@ import { FormsModule } from '@angular/forms';
     PromocionComponent,
     VentaComponent,
     ProductoFormComponent,
-    LoginComponent
+    LoginComponent,
+    AuthLayoutComponent,
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -72,8 +80,16 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     ToastrModule.forRoot(),
     FormsModule,
+    RouterModule,
+    MatSelectModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -35,6 +35,26 @@
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     <mat-error *ngIf="stock?.invalid">{{error_stock()}}</mat-error>
   </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Categoría</mat-label>
+
+    <mat-select formControlName="categoria_id">
+      <mat-option>
+        <ngx-mat-select-search
+          [formControl]="categoriaFiltro"
+          placeholderLabel="Buscar categoría..."
+          noEntriesFoundLabel="No se encontró">
+        </ngx-mat-select-search>
+      </mat-option>
+      <mat-option *ngFor="let c of categoriasFiltradas" [value]="c.id">
+        {{ c.tipo }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="agregar.get('categoria_id')?.invalid">
+      Debe seleccionar una categoría
+    </mat-error>
+  </mat-form-field>
 <p>
   <mat-form-field appearance="fill" style="width: 100%;">
     <mat-label>Imagen</mat-label>

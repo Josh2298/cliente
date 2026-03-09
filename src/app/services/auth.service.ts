@@ -4,55 +4,55 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Login } from '../models/login';
 import { environment } from '../../environments/environment';
 import { Usuario } from '../models/usuario';
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization':''+localStorage.getItem('tokenBelen')
-  })
-};
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private usuarioActual: BehaviorSubject<Usuario>;
-  public usuario:Observable<Usuario>
-  base=environment.base
-
-  constructor(private http:HttpClient) {
-    let user=localStorage.getItem('test')
-      this.usuarioActual = new BehaviorSubject<Usuario>(JSON.parse(user+""))
-      this.usuario = this.usuarioActual.asObservable();
-      /* this.usuarioActual = new BehaviorSubject<Usuario>(
-        user ? JSON.parse(user) : null as any */
+  base=environment.base;
+  constructor(private http:HttpClient) { }
+  getUsers(){
+    return this.http.get(`${this.base}users`);
   }
-  public get usuarioActualValue(){
-    return this.usuarioActual.value
-  }
-
-  isLogged():Observable<Usuario>{
-    return (this.usuarioActual)
-  }
-
-  login(form:Login):Observable<any>{
-    return this.http.post(this.base+'login',form)
-    .pipe(
-      map((success:any)=>{
-        this.usuarioActual.next(success.user)
-        const tokenAF= `Bearer ${success.access_token}`;
-        localStorage.setItem('tokenBelen',tokenAF);
-        localStorage.setItem('test',JSON.stringify(success.user));
-        // localStorage.setItem('token-ope',btoa(tokenAF));
-        // localStorage.setItem('token-ope',success);
-        return success;
-      })
-    );
-  }
-  logout():void{
-    localStorage.removeItem('tokenBelen')
-    localStorage.removeItem('test')
+  logout(){
+    localStorage.removeItem('token-ope');
+    localStorage.removeItem('rol');
+    localStorage.removeItem('nombre');
+    localStorage.removeItem('email');
   }
   estaLogueado(): boolean {
-    return !!localStorage.getItem('tokenBelen');
+    return !!localStorage.getItem('token-ope');
   }
+  getRol(): string | null {
+    return localStorage.getItem('rol');
+  }
+  getToken(): string | null {
+    return localStorage.getItem('token-ope');
+  }
+  login(data:any){
+    // console.log('aqui');  
+    return this.http.post(`${this.base}login`,data)
+    .pipe(
+        map((success:any)=>{
+          const tokenAF= `Bearer ${success['token']}`;    
+          localStorage.setItem('token-ope',tokenAF);     
+          localStorage.setItem('rol', success.user.rol);
+          localStorage.setItem('nombre', success.user.name);
+          localStorage.setItem('email', success.user.email);     
+          // localStorage.setItem('token-ope',btoa(tokenAF));          
+          // localStorage.setItem('token-ope',success);          
+          return success;
+        })
+    );
+  }
+  // login(data:any){ 
+  //   return this.http.post(`${this.base}login`,data);
+  //   .pipe(
+  //       map((success:any)=>{
+  //         const tokenAF= `Bearer ${success.token}`;
+  //         localStorage.setItem('token-ope',btoa(tokenAF));          
+  //         return success;
+  //       })
+  //   );
+  // }
 }

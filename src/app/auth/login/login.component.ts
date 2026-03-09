@@ -28,9 +28,9 @@ export class LoginComponent {
 
     const formValue = this.loginForm.getRawValue();
     this.auth.login(formValue).subscribe({
-      next: (res)=>{
+      next: (res:any)=>{
         if(res.user.rol === 'admin'){
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/usuario']);
         }else{
           this.router.navigate(['/cliente']);
         }

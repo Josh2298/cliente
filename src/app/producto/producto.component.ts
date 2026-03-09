@@ -6,6 +6,8 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import  Swal from 'sweetalert2';
 import { ProductoFormComponent } from './producto-form/producto-form.component';
 import { ToastrService } from 'ngx-toastr';
+import { CategoriaService } from '../services/categoria.service';
+import { Categoria } from '../models/categoria';
 
 @Component({
   selector: 'app-producto',
@@ -14,13 +16,18 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProductoComponent implements OnInit{
   productos:Producto[]=[]
-  constructor(private productoService:ProductoService,public dialog: MatDialog,private toatr:ToastrService){}
+  categorias:Categoria[]=[]
+  constructor(private productoService:ProductoService, private categoriaService: CategoriaService,public dialog: MatDialog,private toatr:ToastrService){}
   llenar_imagen(nombre:string):string{
     return 'http://localhost:8000/api/producto/imagen/'+nombre
   }
   ngOnInit():void{
     this.productoService.listar_productos().subscribe(data =>{
       this.productos=data
+      console.log(data)
+    })
+    this.categoriaService.listar_categorias().subscribe(data =>{
+      this.categorias=data
       console.log(data)
     })
   }

@@ -1,8 +1,10 @@
 import { Component, Inject } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Producto } from 'src/app/models/producto';
+import { Categoria } from 'src/app/models/categoria';
 import { ProductoService } from 'src/app/services/producto.service';
+import { CategoriaService } from 'src/app/services/categoria.service';
 
 @Component({
   selector: 'app-producto-form',
@@ -10,10 +12,15 @@ import { ProductoService } from 'src/app/services/producto.service';
   styleUrls: ['./producto-form.component.css']
 })
 export class ProductoFormComponent {
+  categorias: Categoria[] = [];
+  categoriaFiltro = new FormControl('');
+  categoriasFiltradas: Categoria[] = [];
+  productoForm!: FormGroup;
   public name:string=""
   public previsualizacion:string=""
   texto:string=""
-  constructor(public dialogRef:MatDialogRef<ProductoFormComponent>, @ Inject (MAT_DIALOG_DATA) public data:any,private productoServicio:ProductoService){
+  constructor(public dialogRef:MatDialogRef<ProductoFormComponent>, @ Inject (MAT_DIALOG_DATA) public data:any,private productoServicio:ProductoService, private fb: FormBuilder,
+  private categoriaService: CategoriaService){
     this.texto=data.texto
     console.log(data)
     this.nombre?.setValue(data.producto.nombre)
@@ -22,10 +29,28 @@ export class ProductoFormComponent {
     this.cantidad_min?.setValue(data.producto.cantidad_min)
     this.stock?.setValue(data.producto.stock)
     if(data.producto.imagen!="")
-      this.previsualizacion='http://localhost:8000/api/producto/imagen/'+data.imagen
+      this.previsualizacion='http://localhost:8000/api/producto/imagen/'+data.producto.imagen
     if(data.texto=="Editar Producto"){
       this.imagen?.clearValidators()
+      this.categoria_id?.clearValidators()
     }
+  }
+  ngOnInit(): void {
+      this.categoriaService.listar_categorias().subscribe(data=>{
+      this.categorias = data
+      this.categoriasFiltradas = data
+      console.log(this.categorias)
+    })
+    
+      this.categoriaFiltro.valueChanges.subscribe(valor => {
+        if(!valor){
+          this.categoriasFiltradas = this.categorias
+          return
+        }
+      this.categoriasFiltradas = this.categorias.filter(c =>
+      c.tipo.toLowerCase().includes(valor.toLowerCase())
+      )
+    })
   }
   agregar=new FormGroup({
     id: new FormControl('',[]),
@@ -34,14 +59,16 @@ export class ProductoFormComponent {
     precio_venta: new FormControl('',[Validators.required]),
     cantidad_min: new FormControl('',[Validators.required]),
     stock: new FormControl('',[Validators.required]),
+    categoria_id: new FormControl('',[Validators.required]),
     imagen: new FormControl('',[Validators.required]),
-    nombreImagen: new FormControl('',[]),
+    nombreImagen: new FormControl('',[])
   })
   get nombre(){return this.agregar.get('nombre')}
   get precio_venta(){return this.agregar.get('precio_venta')}
   get precio_compra(){return this.agregar.get('precio_compra')}
   get cantidad_min(){return this.agregar.get('cantidad_min')}
   get stock(){return this.agregar.get('stock')}
+  get categoria_id(){return this.agregar.get('categoria_id')}
   get imagen(){return this.agregar.get('imagen')}
   get nombreImagen(){return this.agregar.get('nombreImagen')}
     
@@ -75,7 +102,7 @@ export class ProductoFormComponent {
       return "Campo Obligatorio"
     return ""
   }
-    cargarImagen(event:any):void{
+  cargarImagen(event:any):void{
     console.log(event.target.files)
     let file:File=<File>event.target.files[0]
     this.name=file.name
