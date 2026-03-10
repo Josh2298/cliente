@@ -28,6 +28,8 @@ export class ProductoFormComponent {
     this.precio_venta?.setValue(data.producto.precio_venta)
     this.cantidad_min?.setValue(data.producto.cantidad_min)
     this.stock?.setValue(data.producto.stock)
+    this.categoria_id?.setValue(data.producto.categoria_id)
+    this.nombreImagen?.setValue(data.producto.nombreImagen)
     if(data.producto.imagen!="")
       this.previsualizacion='http://localhost:8000/api/producto/imagen/'+data.producto.imagen
     if(data.texto=="Editar Producto"){

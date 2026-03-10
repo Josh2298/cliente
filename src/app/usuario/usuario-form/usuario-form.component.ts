@@ -22,7 +22,7 @@ export class UsuarioFormComponent {
     this.password?.setValue(data.usuario.password)
     //this.rol?.setValue(data.usuario.rol)
      this.email?.setValue(data.usuario.email)
-    //this.imagen?.setValue(data.imagen)
+    this.nombreImagen?.setValue(data.usuario.nombreImagen)
     if(data.usuario.imagen!="")
       this.previsualizacion='http://localhost:8000/api/usuario/imagen/'+data.usuario.imagen
     if(data.texto=="Editar Usuario"){
