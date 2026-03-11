@@ -21,13 +21,14 @@ export class UsuarioFormComponent {
     this.apellido?.setValue(data.usuario.apellido)
     this.password?.setValue(data.usuario.password)
     //this.rol?.setValue(data.usuario.rol)
-     this.email?.setValue(data.usuario.email)
+    this.email?.setValue(data.usuario.email)
     this.nombreImagen?.setValue(data.usuario.nombreImagen)
     if(data.usuario.imagen!="")
       this.previsualizacion='http://localhost:8000/api/usuario/imagen/'+data.usuario.imagen
     if(data.texto=="Editar Usuario"){
       this.password?.clearValidators()
       this.imagen?.clearValidators()
+      this.nombreImagen?.clearValidators()
     }
   }
   agregar=new FormGroup({
