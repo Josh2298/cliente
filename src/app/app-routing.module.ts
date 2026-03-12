@@ -7,6 +7,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { AuthGuard } from './guards/auth.guard';
+//import { PromocionComponent } from './promocion/promocion.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
     children: [
       { path: 'usuario', component: UsuarioComponent },
       { path: 'cliente', component: ClienteComponent },
-      { path: 'producto', component: ProductoComponent }
+      { path: 'producto', component: ProductoComponent },
+      //{ path: 'promocion', component: PromocionComponent }
     ]
   },
 

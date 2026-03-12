@@ -1,1 +1,40 @@
-<p>promocion works!</p>
+<hr>
+  <H4>PROMOCIONES</H4>
+<hr>
+<button mat-button (click)="openDialog()">Crear Promocion</button>
+
+<table class="table">
+  <thead class="table-dark table-sm">
+    <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>1 Persona</th>
+        <th>2 Persona</th>
+        <th>3 Persona</th>
+        <th>Medio Mes</th>
+        <th>Trimestral</th>
+        <th>Semestral</th>
+        <th>Zumba</th>
+        <th>Medio mes Zumba</th>
+        <th>Opcion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of productos;let i=index">
+        <td>{{i+1}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.1persona}}</td>
+        <td>{{item.2persona}}</td>
+        <td>{{item.3persona}}</td>
+        <td>{{item.medio_mes}}</td>
+        <td>{{item.trimestral}}</td>
+        <td>{{item.semestral}}</td>
+        <td>{{item.zumba}}</td>
+        <td>{{item.medio_z}}</td>
+        <td>
+            <button class="btn btn-sm btn-success" (click)="actualizar(item)"><mat-icon>refresh</mat-icon></button>
+            <button class="btn btn-sm btn-danger" (click)="eliminar(item)"><mat-icon>delete_sweep</mat-icon></button>
+        </td>
+    </tr>
+  </tbody>
+</table>

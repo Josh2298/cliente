@@ -121,7 +121,7 @@ export class ClienteComponent implements OnInit{
             nombre:result.value.nombre,
             apellido:result.value.apellido,
             password:result.value.password,
-            rol:result.value.rol,
+            rol:item.rol,
             imagen:result.value.nombreImagen,
             email:result.value.email,
             antecedentes:result.value.antecedentes,
