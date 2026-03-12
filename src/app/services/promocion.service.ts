@@ -9,16 +9,16 @@ import { Promocion } from '../models/promocion';
 export class PromocionService {
 
   constructor(private http:HttpClient) {}
-  listar_usuarios():Observable<Promocion[]>{
-      return this.http.get<Promocion[]>('http://localhost:8000/api/usuario')
+  listar_promociones():Observable<Promocion[]>{
+      return this.http.get<Promocion[]>('http://localhost:8000/api/promocion')
     }
     eliminar(id:number):Observable<Promocion[]>{
-      return this.http.delete<Promocion[]>('http://localhost:8000/api/usuario/'+id)
+      return this.http.delete<Promocion[]>('http://localhost:8000/api/promocion/'+id)
     }
     agregar(formulario:Promocion):Observable<Promocion[]>{
-      return this.http.post<Promocion[]>('http://localhost:8000/api/usuario/',formulario)
+      return this.http.post<Promocion[]>('http://localhost:8000/api/promocion/',formulario)
     }
     actualizar(formulario:Promocion,id:number):Observable<Promocion[]>{
-      return this.http.put<Promocion[]>('http://localhost:8000/api/usuario/'+id,formulario)
+      return this.http.put<Promocion[]>('http://localhost:8000/api/promocion/'+id,formulario)
     }
 }

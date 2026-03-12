@@ -4,7 +4,7 @@ import { Categoria } from '../models/categoria';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import  Swal from 'sweetalert2';
-//import { UsuarioFormComponent } from './categoria-form/categoria-form.component';
+import { CategoriaFormComponent } from './categoria-form/categoria-form.component';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -54,14 +54,14 @@ export class CategoriaComponent implements OnInit{
       cancelButtonText: 'No, let me think',
     }).then((result) => {
       if (result.value) {
-        Swal.fire('Removed!', 'Product removed successfully.', 'success');
+        Swal.fire('Removed!', 'Categoria removed successfully.', 'success');
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Error','Product stil in our database.)', 'error');
+        Swal.fire('Error','Categoria stil in our database.)', 'error');
       }
     });
   }
 
-  /* openDialog() {
+  openDialog() {
     let categoria:Categoria
     categoria={
       id:0,
@@ -111,5 +111,5 @@ export class CategoriaComponent implements OnInit{
       else
         this.toatr.error('Nota','Operacion Cancelada')
     });
-  } */
+  }
 }

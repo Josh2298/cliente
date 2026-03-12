@@ -41,6 +41,8 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { MatSelectModule } from '@angular/material/select';
+import { PromocionFormComponent } from './promocion/promocion-form/promocion-form.component';
+import { CategoriaFormComponent } from './categoria/categoria-form/categoria-form.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import { MatSelectModule } from '@angular/material/select';
     ProductoFormComponent,
     LoginComponent,
     AuthLayoutComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    PromocionFormComponent,
+    CategoriaFormComponent
   ],
   imports: [
     BrowserModule,
