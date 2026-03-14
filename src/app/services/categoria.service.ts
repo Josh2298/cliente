@@ -22,4 +22,7 @@ export class CategoriaService {
   actualizar(formulario:Categoria,id:number):Observable<Categoria[]>{
     return this.http.put<Categoria[]>('http://localhost:8000/api/categoria/'+id,formulario)
   }
+  productos(id:number):Observable<any[]>{
+    return this.http.get<any[]>('http://localhost:8000/api/categoria/productos/' +id)
+  }
 }
