@@ -1,1 +1,55 @@
-<p>promocion-form works!</p>
+<h2 mat-dialog-title>{{texto}}</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="agregar">
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="nombre">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-error *ngIf="nombre?.invalid">{{error_nombre()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Prec. 1 person</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="p1persona">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Prec. 2 person</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="p2persona">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Prec. 3 person</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="p3persona">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Medio Mes</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="medio_mes">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Trimestral</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="trimestral">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Semestral</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="semestral">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Zumba</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="zumba">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Medio Mes Zumba</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="medio_z">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-dialog-close class="btn btn-secondary">Cancelar</button>
+  <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid">Guardar</button>
+</mat-dialog-actions>

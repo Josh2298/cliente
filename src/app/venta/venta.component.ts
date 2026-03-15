@@ -35,4 +35,9 @@ export class VentaComponent implements OnInit{
       console.log(this.usuarios)
     })
   }
+  listarProductos(id:number):void{
+    this.categoriaServicio.productos(id).subscribe(data=>{
+      this.productos=data
+    })
+  }
 }

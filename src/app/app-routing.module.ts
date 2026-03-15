@@ -9,6 +9,7 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 import { AuthGuard } from './guards/auth.guard';
 import { PromocionComponent } from './promocion/promocion.component';
 import { CategoriaComponent } from './categoria/categoria.component';
+import { MembresiaComponent } from './membresia/membresia.component';
 import { VentaComponent } from './venta/venta.component';
 
 
@@ -30,6 +31,7 @@ const routes: Routes = [
     children: [
       { path: 'usuario', component: UsuarioComponent },
       { path: 'cliente', component: ClienteComponent },
+      { path: 'membresia', component: MembresiaComponent },
       { path: 'producto', component: ProductoComponent },
       { path: 'promocion', component: PromocionComponent },
       { path: 'categoria', component: CategoriaComponent },

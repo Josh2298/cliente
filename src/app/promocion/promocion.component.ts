@@ -36,7 +36,7 @@ export class PromocionComponent {
           this.promociones=data
         })
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelled','No se elimino el promocion :)', 'error');
+        Swal.fire('Cancelled','No se elimino la promocion :)', 'error');
       }
     });
   }

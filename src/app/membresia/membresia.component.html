@@ -1,1 +1,42 @@
-<p>membresia works!</p>
+<hr>
+  <H4>MEMBRESIAS</H4>
+<hr>
+<!-- <button mat-button (click)="openDialog()">Crear Membresia</button> -->
+
+<table class="table">
+  <thead class="table-dark table-sm">
+    <tr>
+        <th>#</th>
+        <th>Plan</th>
+        <th>Monto</th>
+        <th>Fecha<br>Inicio</th>
+        <th>Fecha<br>Fin</th>
+        <th>Estado</th>
+        <th>Detalle</th>
+        <th>Disciplina</th>
+        <th>Extencion<br>Inicio</th>
+        <th>Extencion<br>Fin</th>
+        <th>Detalle<br>Extension</th>
+        <th>Opcion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of membresias;let i=index">
+        <td>{{i+1}}</td>
+        <td>{{item.plan}}</td>
+        <td>{{item.monto}}</td>
+        <td>{{item.fecha_ini}}</td>
+        <td>{{item.fecha_fin}}</td>
+        <td>{{item.estado}}</td>
+        <td>{{item.detalle}}</td>
+        <td>{{item.disciplina}}</td>
+        <td>{{item.ext_ini}}</td>
+        <td>{{item.ext_fin}}</td>
+        <td>{{item.detalle_ext}}</td>
+        <td>
+            <!-- <button class="btn btn-sm btn-success" (click)="actualizar(item)"><mat-icon>refresh</mat-icon></button>
+            <button class="btn btn-sm btn-danger" (click)="eliminar(item)"><mat-icon>delete_sweep</mat-icon></button> -->
+        </td>
+    </tr>
+  </tbody>
+</table>
