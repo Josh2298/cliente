@@ -11,7 +11,7 @@ import { PromocionComponent } from './promocion/promocion.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { MembresiaComponent } from './membresia/membresia.component';
 import { VentaComponent } from './venta/venta.component';
-
+import { SesionComponent } from './sesion/sesion.component';
 
 const routes: Routes = [
   // Layout público (SIN navbar)
@@ -35,6 +35,7 @@ const routes: Routes = [
       { path: 'producto', component: ProductoComponent },
       { path: 'promocion', component: PromocionComponent },
       { path: 'categoria', component: CategoriaComponent },
+      { path: 'sesion', component: SesionComponent },
       { path: 'venta', component: VentaComponent }
     ]
   },

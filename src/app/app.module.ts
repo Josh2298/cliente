@@ -44,6 +44,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { PromocionFormComponent } from './promocion/promocion-form/promocion-form.component';
 import { CategoriaFormComponent } from './categoria/categoria-form/categoria-form.component';
 import { CajaFormComponent } from './caja/caja-form/caja-form.component';
+import { SesionComponent } from './sesion/sesion.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { CajaFormComponent } from './caja/caja-form/caja-form.component';
     MainLayoutComponent,
     PromocionFormComponent,
     CategoriaFormComponent,
-    CajaFormComponent
+    CajaFormComponent,
+    SesionComponent
   ],
   imports: [
     BrowserModule,

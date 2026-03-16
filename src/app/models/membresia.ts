@@ -10,5 +10,6 @@ export interface Membresia {
     ext_ini:Date,
     ext_fin:Date,
     detalle_ext:string,
-    user_id:number
+    user_id:number,
+    created_at:string
 }
