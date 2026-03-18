@@ -20,7 +20,7 @@ export class MembresiaService {
     actualizar(formulario:Membresia,id:number):Observable<Membresia[]>{
       return this.http.put<Membresia[]>('http://localhost:8000/api/membresia/'+id,formulario)
     }
-    listar_sesiones(mes:number, anio:number):Observable<Membresia[]>{
-      return this.http.get<Membresia[]>('http://localhost:8000/api/sesiones?mes=${mes}&anio=${anio}')
+    listar_sesiones(mes:number, anio:number){
+      return this.http.get<any>(`http://localhost:8000/api/sesiones?mes=${mes}&anio=${anio}`)
     }
 }

@@ -21,20 +21,30 @@
   </mat-select>
 </mat-form-field>
 </div>
+<div style="display:flex; justify-content: space-between; align-items: center; margin-bottom:20px;">
+
+  <!-- izquierda -->
+  <h3 style="margin:0;">
+    Sesiones de {{ getNombreMes() }} {{ anioSeleccionado }}
+  </h3>
+
+  <!-- derecha -->
+  <div style="display:flex; gap:30px;">
+    <p style="margin:0;"><strong>Total sesiones:</strong> {{ totalSesiones }}</p>
+    <p style="margin:0;"><strong>Total Bs:</strong> {{ totalMonto }} Bs.</p>
+  </div>
+
+</div>
+
 <table class="table">
   <thead class="table-dark table-sm">
     <tr>
         <th>#</th>
         <th>Plan</th>
         <th>Monto</th>
-        <th>Fecha<br>Inicio</th>
-        <th>Fecha<br>Fin</th>
-        <th>Estado</th>
+        <th>Fecha</th>
         <th>Detalle</th>
         <th>Disciplina</th>
-        <th>Extencion<br>Inicio</th>
-        <th>Extencion<br>Fin</th>
-        <th>Detalle<br>Extension</th>
         <th>Opcion</th>
     </tr>
   </thead>
@@ -43,14 +53,9 @@
         <td>{{i+1}}</td>
         <td>{{item.plan}}</td>
         <td>{{item.monto}}</td>
-        <td>{{item.fecha_ini}}</td>
-        <td>{{item.fecha_fin}}</td>
-        <td>{{item.estado}}</td>
+        <td>{{ item.created_at | date:'yyyy-MM-dd' }}</td>
         <td>{{item.detalle}}</td>
         <td>{{item.disciplina}}</td>
-        <td>{{item.ext_ini}}</td>
-        <td>{{item.ext_fin}}</td>
-        <td>{{item.detalle_ext}}</td>
         <td>
             <!-- <button class="btn btn-sm btn-success" (click)="actualizar(item)"><mat-icon>refresh</mat-icon></button>
             <button class="btn btn-sm btn-danger" (click)="eliminar(item)"><mat-icon>delete_sweep</mat-icon></button> -->

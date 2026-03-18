@@ -12,8 +12,10 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './sesion.component.html',
   styleUrls: ['./sesion.component.css']
 })
-export class SesionComponent {
+export class SesionComponent implements OnInit{
   membresias:Membresia[]=[]
+  totalSesiones: number = 0;
+  totalMonto: number = 0;
   constructor(private membresiaService:MembresiaService,public dialog: MatDialog,private toatr:ToastrService){}
   mesSeleccionado!: number;
   anioSeleccionado!: number;
@@ -42,28 +44,21 @@ export class SesionComponent {
     for(let i = anioActual; i >= anioActual - 5; i--){
       this.anios.push(i);
     }
-    this.membresiaService.listar_membresias().subscribe(data => {
-      this.membresias = data.filter(m => {
-        const fecha = new Date(m.created_at);
-        const mesRegistro = fecha.getMonth() + 1;
-        const anioRegistro = fecha.getFullYear();
-      return m.plan === 'sesion' &&
-        mesRegistro === this.mesSeleccionado &&
-        anioRegistro === this.anioSeleccionado;
-      });
-    });
+    this.filtrarSesiones();
   }
   filtrarSesiones(): void {
-
-  this.membresiaService
+    this.membresiaService
     .listar_sesiones(this.mesSeleccionado, this.anioSeleccionado)
     .subscribe(data => {
-
-      this.membresias = data;
-
+      this.membresias = data.data;
+      this.totalSesiones = data.totalSesiones;
+      this.totalMonto = data.totalMonto;
     });
-
-}
+  }
+  getNombreMes(): string {
+    const mes = this.meses.find(m => m.valor === this.mesSeleccionado);
+    return mes ? mes.nombre : '';
+  }
 
   eliminar(item:Membresia):void{
     Swal.fire({
