@@ -4,7 +4,7 @@ import { Membresia } from '../models/membresia';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import  Swal from 'sweetalert2';
-//import { UsuarioFormComponent } from './usuario-form/usuario-form.component';
+import { MembresiaFormComponent } from '../membresia/membresia-form/membresia-form.component';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -16,6 +16,8 @@ export class SesionComponent implements OnInit{
   membresias:Membresia[]=[]
   totalSesiones: number = 0;
   totalMonto: number = 0;
+  totalEfectivo: number = 0;
+  totalQr: number = 0;    
   constructor(private membresiaService:MembresiaService,public dialog: MatDialog,private toatr:ToastrService){}
   mesSeleccionado!: number;
   anioSeleccionado!: number;
@@ -52,6 +54,8 @@ export class SesionComponent implements OnInit{
     .subscribe(data => {
       this.membresias = data.data;
       this.totalSesiones = data.totalSesiones;
+      this.totalEfectivo = data.totalEfectivo;
+      this.totalQr = data.totalQr;     
       this.totalMonto = data.totalMonto;
     });
   }
@@ -99,38 +103,44 @@ export class SesionComponent implements OnInit{
       }
     });
   }
-  /* openDialog() {
+  openDialog() {
     let membresia:Membresia
     membresia={
       id:0,
-      ci:'',
-      nombre:'',
-      apellido:'',
-      password:'',
-      rol:'',
-      imagen:'',
-      email:'',
-      antecedentes:'',
-      medicamentos:'',
-      tratamientos:''
+      plan:'',
+      p_efectivo:0,
+      p_qr:0,
+	    fecha_ini:new Date(),
+      fecha_fin:new Date(),
+      estado:'',
+      detalle:'',
+      disciplina:'',
+      ext_ini:new Date(),
+      ext_fin:new Date(),
+      detalle_ext:'',
+      user_id:0,
+      created_at:''
     }
-    const dialogRef = this.dialog.open(UsuarioFormComponent,{data:{usuario:membresia,texto:"Crear Membresia"}});
+    const dialogRef = this.dialog.open(MembresiaFormComponent,{data:{usuario:membresia,texto:"Crear Membresia"}});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result.value);
       if(result.value!=undefined){
         membresia={
           id:0,
-          ci:result.value.ci,
-          nombre:result.value.nombre,
-          apellido:result.value.apellido,
-          password:result.value.password,
-          rol:'admin',
-          imagen:result.value.nombreImagen,
-          email:result.value.email,
-          antecedentes:result.value.antecedentes,
-          medicamentos:result.value.medicamentos,
-          tratamientos:result.value.tratamientos
+          plan:result.value.plan,
+          p_efectivo:result.value.p_efectivo,
+          p_qr:result.value.p_qr,
+          fecha_ini:result.value.fecha_ini,
+          fecha_fin:result.value.fecha_fin,
+          estado:result.value.estado,
+          detalle:result.value.detalle,
+          disciplina:result.value.disciplina,
+          ext_ini:result.value.ext_ini,
+          ext_fin:result.value.ext_fin,
+          detalle_ext:result.value.detalle,
+          user_id:result.value.user_id,
+          created_at:result.value.created_at,
         }
         this.membresiaService.agregar(membresia).subscribe(data=>{
           this.membresias=data
@@ -147,27 +157,30 @@ export class SesionComponent implements OnInit{
 
   actualizar(item:Membresia) {
     let membresia:Membresia
-    const dialogRef = this.dialog.open(UsuarioFormComponent,{data:{usuario:item,texto:"Editar Membresia"}});
+    const dialogRef = this.dialog.open(MembresiaFormComponent,{data:{membresia:item,texto:"Editar Membresia"}});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result.value);
       if(result.value!=undefined){
         membresia={
           id:item.id,
-          ci:result.value.ci,
-          nombre:result.value.nombre,
-          apellido:result.value.apellido,
-          password:result.value.password,
-          rol:item.rol,
-          imagen:result.value.nombreImagen,
-          email:result.value.email,
-          antecedentes:result.value.antecedentes,
-          medicamentos:result.value.medicamentos,
-          tratamientos:result.value.tratamientos
+          plan:result.value.plan,
+          p_efectivo:result.value.p_efectivo,
+          p_qr:result.value.p_qr,
+          fecha_ini:result.value.fecha_ini,
+          fecha_fin:result.value.fecha_fin,
+          estado:result.value.estado,
+          detalle:result.value.detalle,
+          disciplina:result.value.disciplina,
+          ext_ini:result.value.ext_ini,
+          ext_fin:result.value.ext_fin,
+          detalle_ext:result.value.detalle,
+          user_id:result.value.user_id,
+          created_at:result.value.created_at,
         }
-        this.membresiaService.actualizar(membresia,item.id).subscribe(data=>{
-          this.membresias=data
+        this.membresiaService.actualizar(membresia,item.id).subscribe(()=>{
           this.toatr.success('Exito','Registro Actualizado')
+          this.filtrarSesiones();
         },
         error=>{
           this.toatr.error('Error','Operacion Fallida')
@@ -176,5 +189,5 @@ export class SesionComponent implements OnInit{
       else
         this.toatr.error('Nota','Operacion Cancelada')
     });
-  } */
+  }
 }

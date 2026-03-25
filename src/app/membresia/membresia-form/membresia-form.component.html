@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>{{texto}}</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="agregar">
+  <mat-form-field appearance="fill">
+    <mat-label>Plan</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="nombre">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-error *ngIf="plan?.invalid">{{error_plan()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Pago Efectivo</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="p_efectivo">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-error *ngIf="p_efectivo?.invalid">{{error_p_efectivo()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Pago Qr</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="p_qr">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha Inicio</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="fecha_ini">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha Fin</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="fecha_fin">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Detalle</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="detalle">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Disciplina</mat-label>
+
+    <mat-select formControlName="disciplina">
+        <mat-option value="musculacion">Musculación</mat-option>
+        <mat-option value="zumba">Zumba</mat-option>
+    </mat-select>
+    <mat-error *ngIf="agregar.get('disciplina')?.invalid">
+        Debe seleccionar una disciplina
+    </mat-error>
+  </mat-form-field>
+
+  <div class="text-center">
+    <img appImagenRota src={{previsualizacion}} alt="" height="100px" width="100px">
+  </div>
+</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-dialog-close class="btn btn-secondary">Cancelar</button>
+  <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid">Guardar</button>
+</mat-dialog-actions>

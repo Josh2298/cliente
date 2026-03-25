@@ -8,7 +8,8 @@
     <tr>
         <th>#</th>
         <th>Plan</th>
-        <th>Monto</th>
+        <th>Pago Efectivo</th>
+        <th>Pago Qr</th>
         <th>Fecha<br>Inicio</th>
         <th>Fecha<br>Fin</th>
         <th>Estado</th>
@@ -24,7 +25,8 @@
     <tr *ngFor="let item of membresias;let i=index">
         <td>{{i+1}}</td>
         <td>{{item.plan}}</td>
-        <td>{{item.monto}}</td>
+        <td>{{item.p_efectivo}}</td>
+        <td>{{item.p_qr}}</td>
         <td>{{item.fecha_ini}}</td>
         <td>{{item.fecha_fin}}</td>
         <td>{{item.estado}}</td>

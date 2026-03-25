@@ -45,6 +45,7 @@ import { PromocionFormComponent } from './promocion/promocion-form/promocion-for
 import { CategoriaFormComponent } from './categoria/categoria-form/categoria-form.component';
 import { CajaFormComponent } from './caja/caja-form/caja-form.component';
 import { SesionComponent } from './sesion/sesion.component';
+import { MembresiaFormComponent } from './membresia/membresia-form/membresia-form.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { SesionComponent } from './sesion/sesion.component';
     PromocionFormComponent,
     CategoriaFormComponent,
     CajaFormComponent,
-    SesionComponent
+    SesionComponent,
+    MembresiaFormComponent
   ],
   imports: [
     BrowserModule,

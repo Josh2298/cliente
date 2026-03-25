@@ -1,7 +1,8 @@
 export interface Membresia {
     id:number,
     plan:string,
-    monto:number,
+    p_efectivo:number,
+    p_qr:number,
     fecha_ini:Date,
     fecha_fin:Date,
     estado:string,
