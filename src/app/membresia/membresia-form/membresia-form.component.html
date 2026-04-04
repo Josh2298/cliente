@@ -3,7 +3,7 @@
   <form [formGroup]="agregar">
   <mat-form-field appearance="fill">
     <mat-label>Plan</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="nombre">
+    <input matInput placeholder="Placeholder" formControlName="plan">
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     <mat-error *ngIf="plan?.invalid">{{error_plan()}}</mat-error>
   </mat-form-field>

@@ -5,7 +5,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import  Swal from 'sweetalert2';
 import { UsuarioFormComponent } from '../usuario/usuario-form/usuario-form.component';
+import { RegistroPagoComponent } from '../registro-pago/registro-pago.component';
 import { ToastrService } from 'ngx-toastr';
+import { MembresiaService } from '../services/membresia.service';
 
 @Component({
   selector: 'app-cliente',
@@ -108,6 +110,32 @@ export class ClienteComponent implements OnInit{
           this.toatr.error('Nota','Operacion Cancelada')
       });
     }
+  abrirPago(cliente: any) {
+    const dialogRef = this.dialog.open(RegistroPagoComponent, {
+      width: '500px',
+      data: { cliente }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.registrarPago(result, cliente);
+      }
+    });
+  }
+  registrarPago(data: any, cliente: any) {
+
+  const membresia = {
+    plan: data.tipo,
+    p_efectivo: data.p_efectivo,
+    p_qr: data.p_qr,
+    detalle: data.detalle,
+    user_id: cliente.id
+  };
+
+  this.membresiaService.agregar(membresia).subscribe(() => {
+    console.log('Pago registrado');
+  });
+}
     actualizar(item:Usuario) {
       let user:Usuario
       const dialogRef = this.dialog.open(UsuarioFormComponent,{data:{usuario:item,texto:"Editar Usuario"}});

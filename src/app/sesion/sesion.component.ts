@@ -121,7 +121,7 @@ export class SesionComponent implements OnInit{
       user_id:0,
       created_at:''
     }
-    const dialogRef = this.dialog.open(MembresiaFormComponent,{data:{usuario:membresia,texto:"Crear Membresia"}});
+    const dialogRef = this.dialog.open(MembresiaFormComponent,{data:{membresia:membresia,texto:"Crear Membresia"}});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result.value);
@@ -138,7 +138,7 @@ export class SesionComponent implements OnInit{
           disciplina:result.value.disciplina,
           ext_ini:result.value.ext_ini,
           ext_fin:result.value.ext_fin,
-          detalle_ext:result.value.detalle,
+          detalle_ext:result.value.detalle_ext,
           user_id:result.value.user_id,
           created_at:result.value.created_at,
         }
@@ -174,7 +174,7 @@ export class SesionComponent implements OnInit{
           disciplina:result.value.disciplina,
           ext_ini:result.value.ext_ini,
           ext_fin:result.value.ext_fin,
-          detalle_ext:result.value.detalle,
+          detalle_ext:result.value.detalle_ext,
           user_id:result.value.user_id,
           created_at:result.value.created_at,
         }
