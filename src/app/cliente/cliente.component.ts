@@ -110,32 +110,6 @@ export class ClienteComponent implements OnInit{
           this.toatr.error('Nota','Operacion Cancelada')
       });
     }
-  abrirPago(cliente: any) {
-    const dialogRef = this.dialog.open(RegistroPagoComponent, {
-      width: '500px',
-      data: { cliente }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.registrarPago(result, cliente);
-      }
-    });
-  }
-  registrarPago(data: any, cliente: any) {
-
-  const membresia = {
-    plan: data.tipo,
-    p_efectivo: data.p_efectivo,
-    p_qr: data.p_qr,
-    detalle: data.detalle,
-    user_id: cliente.id
-  };
-
-  this.membresiaService.agregar(membresia).subscribe(() => {
-    console.log('Pago registrado');
-  });
-}
     actualizar(item:Usuario) {
       let user:Usuario
       const dialogRef = this.dialog.open(UsuarioFormComponent,{data:{usuario:item,texto:"Editar Usuario"}});

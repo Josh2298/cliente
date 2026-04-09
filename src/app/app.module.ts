@@ -47,6 +47,7 @@ import { CajaFormComponent } from './caja/caja-form/caja-form.component';
 import { SesionComponent } from './sesion/sesion.component';
 import { MembresiaFormComponent } from './membresia/membresia-form/membresia-form.component';
 import { RegistroPagoComponent } from './registro-pago/registro-pago.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { RegistroPagoComponent } from './registro-pago/registro-pago.component';
     ToastrModule.forRoot(),
     FormsModule,
     RouterModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   providers: [
     {

@@ -1,17 +1,37 @@
-<h2 mat-dialog-title>Registrar Pago</h2>
-<form [formGroup]="form">
-    <mat-form-field>
-  <mat-label>Tipo de Plan</mat-label>
-  <mat-select formControlName="tipo">
-    <mat-option value="sesion">Sesión</mat-option>
-    <mat-option value="zumba">Zumba</mat-option>
-    <mat-option value="mensual">Mensualidad</mat-option>
-    <mat-option value="medio_mes">Medio Mes</mat-option>
-  </mat-select>
-</mat-form-field>
-</form>
-<input matInput type="number" formControlName="p_efectivo">
-<input matInput type="number" formControlName="p_qr">
-<textarea matInput formControlName="detalle"></textarea>
-<button mat-button (click)="dialogRef.close()">Cancelar</button>
-<button mat-button color="primary" (click)="guardar()">Guardar</button>
+<mat-dialog-content>
+  <mat-tab-group>
+
+    <mat-tab label="Datos generales">
+      <div class="p-2">
+        <!-- contenido tab 1 -->
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput [(ngModel)]="data.nombre">
+        </mat-form-field>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Pagos">
+      <div class="p-2">
+        <!-- contenido tab 2 -->
+        <mat-form-field appearance="fill">
+          <mat-label>Monto</mat-label>
+          <input matInput type="number" [(ngModel)]="data.monto">
+        </mat-form-field>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Detalle">
+      <div class="p-2">
+        <!-- contenido tab 3 -->
+        <textarea matInput [(ngModel)]="data.detalle"></textarea>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <!-- <button mat-button color="primary" (click)="guardar()">Guardar</button> -->
+</mat-dialog-actions>
