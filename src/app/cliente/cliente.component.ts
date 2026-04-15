@@ -142,4 +142,7 @@ export class ClienteComponent implements OnInit{
           this.toatr.error('Nota','Operacion Cancelada')
       });
     }
+    openPlan(){
+      
+    }
 }
