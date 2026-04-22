@@ -3,14 +3,14 @@ export interface Membresia {
     plan:string,
     p_efectivo:number,
     p_qr:number,
-    fecha_ini:Date,
-    fecha_fin:Date,
+    fecha_ini?: string | null,
+    fecha_fin?: string | null,
     estado:string,
     detalle:string,
     disciplina:string,
-    ext_ini:Date,
-    ext_fin:Date,
+    ext_ini?:string | null,
+    ext_fin?:string | null,
     detalle_ext:string,
     user_id:number,
-    created_at:string
+    created_at?:string
 }
