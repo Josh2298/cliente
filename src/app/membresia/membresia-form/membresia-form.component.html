@@ -1,11 +1,21 @@
 <h2 mat-dialog-title>{{texto}}</h2>
 <mat-dialog-content class="mat-typography">
   <form [formGroup]="agregar">
+    <div class="text-center">
+      <img appImagenRota src={{previsualizacion}} alt="" height="100px" width="100px">
+    </div>
+
   <mat-form-field appearance="fill">
     <mat-label>Plan</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="plan">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-error *ngIf="plan?.invalid">{{error_plan()}}</mat-error>
+
+    <mat-select formControlName="plan">
+        <mat-option value="Sesion">Sesion</mat-option>
+        <mat-option value="Medio Mes">Medio Mes</mat-option>
+        <mat-option value="Mensualidad">Mensualidad</mat-option>
+    </mat-select>
+    <mat-error *ngIf="agregar.get('plan')?.invalid">
+        Debe seleccionar una disciplina
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -50,10 +60,6 @@
         Debe seleccionar una disciplina
     </mat-error>
   </mat-form-field>
-
-  <div class="text-center">
-    <img appImagenRota src={{previsualizacion}} alt="" height="100px" width="100px">
-  </div>
 </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
