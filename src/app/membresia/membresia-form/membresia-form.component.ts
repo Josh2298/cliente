@@ -3,6 +3,7 @@ import { FormControl,FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Membresia } from 'src/app/models/membresia';
 import { MembresiaService } from 'src/app/services/membresia.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-membresia-form',
@@ -13,6 +14,8 @@ export class MembresiaFormComponent {
   public name:string=""
   public previsualizacion:string=""
   texto:string=""
+  promociones:any[]=[]
+  precioTotal:number=0
   constructor(public dialogRef:MatDialogRef<MembresiaFormComponent>, @ Inject (MAT_DIALOG_DATA) public data:any,private membresiaServicio:MembresiaService){
     this.texto=data.texto
     console.log(data)
