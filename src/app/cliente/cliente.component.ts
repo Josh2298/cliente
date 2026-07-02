@@ -164,15 +164,18 @@ export class ClienteComponent implements OnInit{
       plan:'',
       p_efectivo:0,
       p_qr:0,
+      monto_total:0,
       fecha_ini: fechaIni,
       fecha_fin: fechaFin,
       estado:'',
       detalle:'',
       disciplina:'',
+      cantidad_personas:1,
       ext_ini:'',
       ext_fin:'',
       detalle_ext:'',
-      user_id:0
+      user_id:0,
+      promocion_id:0
     }
       const dialogRef = this.dialog.open(MembresiaFormComponent,{data:{membresia:membresia,texto:"Crear Membresia"}});
     
@@ -182,17 +185,20 @@ export class ClienteComponent implements OnInit{
         membresia={
           id:0,
           plan:result.value.plan,
-          p_efectivo:result.value.monto,
-          p_qr:result.value.monto,
+          p_efectivo:result.value.p_efectivo,
+          p_qr:result.value.p_qr,
+          monto_total:result.value.monto_total,
           fecha_ini:result.value.fecha_ini,
           fecha_fin:result.value.fecha_fin,
           estado:result.value.estado,
           detalle:result.value.detalle,
           disciplina:result.value.disciplina,
+          cantidad_personas:result.value.cantidad_personas,
           ext_ini:result.value.ext_ini,
           ext_fin:result.value.ext_fin,
           detalle_ext:result.value.detalle,
           user_id:result.value.user_id,
+          promocion_id:result.value.promocion_id
         }
         this.membresiaService.agregar(membresia).subscribe(data=>{
           this.membresias=data

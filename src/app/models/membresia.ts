@@ -8,9 +8,12 @@ export interface Membresia {
     estado:string,
     detalle:string,
     disciplina:string,
+    cantidad_personas:number,
+    monto_total:number,
     ext_ini?:string | null,
     ext_fin?:string | null,
     detalle_ext:string,
     user_id:number,
+    promocion_id:number,
     created_at?:string
 }

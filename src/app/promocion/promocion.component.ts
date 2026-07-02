@@ -66,14 +66,7 @@ export class PromocionComponent {
     promocion={
       id:0,
       nombre:'',
-      p1persona:0,
-      p2persona:0,
-      p3persona:0,
-      medio_mes:0,
-      trimestral:0,
-      semestral:0,
-      zumba:0,
-      medio_z:0
+      plan:''
     }
     const dialogRef = this.dialog.open(PromocionFormComponent,{data:{promocion:promocion,texto:"Crear Promocion"}});
 
@@ -83,14 +76,7 @@ export class PromocionComponent {
         promocion={
           id:0,
           nombre:result.value.nombre,
-          p1persona:result.value.p1persona,
-          p2persona:result.value.p2persona,
-          p3persona:result.value.p3persona,
-          medio_mes:result.value.medio_mes,
-          trimestral:result.value.trimestral,
-          semestral:result.value.semestral,
-          zumba:result.value.zumba,
-          medio_z:result.value.medio_z
+          plan:result.value.plan
         }
         this.promocionService.agregar(promocion).subscribe(data=>{
           this.promociones=data
@@ -115,15 +101,8 @@ export class PromocionComponent {
         promocion={
           id:item.id,
           nombre:result.value.nombre,
-          p1persona:result.value.p1persona,
-          p2persona:result.value.p2persona,
-          p3persona:result.value.p3persona,
-          medio_mes:result.value.medio_mes,
-          trimestral:result.value.trimestral,
-          semestral:result.value.semestral,
-          zumba:result.value.zumba,
-          medio_z:result.value.medio_z
-        }
+          plan:result.value.plan
+         }
         this.promocionService.actualizar(promocion,item.id).subscribe(data=>{
           this.promociones=data
           this.toatr.success('Exito','Promocion Actualizado')

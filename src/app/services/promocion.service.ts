@@ -21,4 +21,7 @@ export class PromocionService {
     actualizar(formulario:Promocion,id:number):Observable<Promocion[]>{
       return this.http.put<Promocion[]>('http://localhost:8000/api/promocion/'+id,formulario)
     }
+    obtener_precio(datos:any):Observable<any>{
+      return this.http.post<any>('http://localhost:8000/api/precio-promocion',datos)
+    }
 }

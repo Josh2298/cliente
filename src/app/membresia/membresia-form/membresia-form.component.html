@@ -8,33 +8,72 @@
   <mat-form-field appearance="fill">
     <mat-label>Plan</mat-label>
 
-    <mat-select formControlName="plan">
+    <mat-select formControlName="plan" (selectionChange)="cargarPromociones()">
         <mat-option value="Sesion">Sesion</mat-option>
         <mat-option value="Medio Mes">Medio Mes</mat-option>
         <mat-option value="Mensualidad">Mensualidad</mat-option>
     </mat-select>
     <mat-error *ngIf="agregar.get('plan')?.invalid">
-        Debe seleccionar una disciplina
+        Debe seleccionar un plan
     </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
+    <mat-label>Promoción</mat-label>
+    <mat-select
+      formControlName="promocion_id" (selectionChange)="calcularPrecio()">
+      <mat-option
+        *ngFor="let promo of promociones"
+        [value]="promo.id">
+        {{promo.nombre}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Cantidad Personas</mat-label>
+    <input
+      matInput
+      type="number"
+      min="1"
+      formControlName="cantidad_personas" (input)="calcularPrecio()">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Cantidad Meses</mat-label>
+    <input matInput type="number" formControlName="cantidad_meses" (input)="calcularPrecio()">
+  </mat-form-field>
+
+  <div class="mb-3">
+    <strong>
+      Monto Total: {{precioTotal}} Bs.
+    </strong>
+  </div>
+
+  <mat-form-field appearance="fill">
     <mat-label>Pago Efectivo</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="p_efectivo">
+    <input matInput placeholder="Placeholder" type="number" formControlName="p_efectivo">
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     <mat-error *ngIf="p_efectivo?.invalid">{{error_p_efectivo()}}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Pago Qr</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="p_qr">
+    <input matInput placeholder="Placeholder" type="number" formControlName="p_qr">
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Fecha Inicio</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="fecha_ini">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <input
+      matInput
+      [matDatepicker]="pickerInicio"
+      formControlName="fecha_ini">
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="pickerInicio">
+      </mat-datepicker-toggle>
+    <mat-datepicker #pickerInicio></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field appearance="fill">

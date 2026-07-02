@@ -48,6 +48,8 @@ import { SesionComponent } from './sesion/sesion.component';
 import { MembresiaFormComponent } from './membresia/membresia-form/membresia-form.component';
 import { RegistroPagoComponent } from './registro-pago/registro-pago.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -95,7 +97,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     FormsModule,
     RouterModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     {
