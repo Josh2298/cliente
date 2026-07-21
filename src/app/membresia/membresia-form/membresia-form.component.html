@@ -68,7 +68,8 @@
     <input
       matInput
       [matDatepicker]="pickerInicio"
-      formControlName="fecha_ini">
+      formControlName="fecha_ini"
+      (dateChange)="calcularFechaFin($event.value)">
       <mat-datepicker-toggle
         matSuffix
         [for]="pickerInicio">
@@ -78,8 +79,15 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Fecha Fin</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="fecha_fin">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <!-- 
+    <input matInput [matDatepicker]="pickerFin" formControlName="fecha_fin" readonly>
+    <mat-datepicker-toggle matSuffix [for]="pickerFin">
+    </mat-datepicker-toggle>
+    <mat-datepicker #pickerFin></mat-datepicker> -->
+    <input
+    matInput
+    formControlName="fecha_fin"
+    readonly>
   </mat-form-field>
 
   <mat-form-field appearance="fill">

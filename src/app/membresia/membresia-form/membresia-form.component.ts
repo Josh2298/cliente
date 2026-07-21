@@ -40,8 +40,8 @@ export class MembresiaFormComponent {
     p_efectivo: new FormControl(0,[Validators.required]),
     p_qr: new FormControl(0,[]),
     monto_total: new FormControl(0,[]),
-    fecha_ini: new FormControl('',[]),
-    fecha_fin: new FormControl('',[]),
+    fecha_ini: new FormControl<Date | null>(null, []),
+    fecha_fin: new FormControl<Date | null>(null, []),
     estado: new FormControl('',[]),
     detalle: new FormControl('',[]),
     disciplina: new FormControl('',[]),
@@ -131,5 +131,17 @@ export class MembresiaFormComponent {
       this.p_qr?.setValue(0);
 
     });
-}
+  }
+
+  calcularFechaFin(fechaInicio: Date)
+  {
+    if(!fechaInicio) {
+      return;
+    }
+    const fechaFin = new Date(fechaInicio);
+    fechaFin.setDate(
+      fechaFin.getDate() + 29
+    );
+    this.fecha_fin?.setValue(fechaFin);
+  }
 }
