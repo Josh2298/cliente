@@ -3,6 +3,7 @@ import { FormControl,FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Membresia } from 'src/app/models/membresia';
 import { Promocion } from 'src/app/models/promocion';
+import { Usuario } from 'src/app/models/usuario';
 import { MembresiaService } from 'src/app/services/membresia.service';
 import { PromocionService } from 'src/app/services/promocion.service';
 
@@ -14,12 +15,14 @@ import { PromocionService } from 'src/app/services/promocion.service';
 export class MembresiaFormComponent {
   public name:string=""
   public previsualizacion:string=""
+  cliente!: Usuario
   texto:string=""
   promociones:Promocion[]=[]
   precioTotal:number=0
   constructor(public dialogRef:MatDialogRef<MembresiaFormComponent>, @ Inject (MAT_DIALOG_DATA) public data:any,private membresiaServicio:MembresiaService, private promocionServicio:PromocionService){
     this.texto=data.texto
-    console.log(data)
+    this.cliente=data.cliente
+    console.log(this.cliente)
     this.plan?.setValue(data.membresia.plan)
     this.p_efectivo?.setValue(data.membresia.p_efectivo)
     this.p_qr?.setValue(data.membresia.p_qr)
@@ -33,6 +36,7 @@ export class MembresiaFormComponent {
     this.detalle_ext?.setValue(data.membresia.detalle_ext)
     this.user_id?.setValue(data.membresia.user_id)
     this.created_at?.setValue(data.membresia.created_at)
+    this.previsualizacion = 'http://localhost:8000/api/usuario/imagen/' +data.cliente.imagen;
   }
   agregar=new FormGroup({
     id: new FormControl('',[]),

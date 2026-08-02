@@ -154,7 +154,7 @@ export class ClienteComponent implements OnInit{
       nueva.setDate(nueva.getDate() + dias);
       return nueva;
     }
-    openPlan(){
+    openPlan(cliente: Usuario){
     const hoy = new Date();
     const fechaIni = this.formatDate(hoy);
     const fechaFin = this.formatDate(this.sumarDias(hoy, 29));
@@ -177,7 +177,7 @@ export class ClienteComponent implements OnInit{
       user_id:0,
       promocion_id:0
     }
-      const dialogRef = this.dialog.open(MembresiaFormComponent,{data:{membresia:membresia,texto:"Crear Membresia"}});
+      const dialogRef = this.dialog.open(MembresiaFormComponent,{width: '900px', data:{membresia:membresia,cliente:cliente, texto:"Registrar Membresia"}});
     
     dialogRef.afterClosed().subscribe(result => {
       console.log(result.value);

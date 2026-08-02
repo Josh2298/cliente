@@ -1,0 +1,35 @@
+.cliente-card{
+
+    padding:20px;
+
+    border-radius:15px;
+
+}
+
+.foto-cliente{
+
+    width:180px;
+
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+    border:3px solid #1976d2;
+
+}
+
+.cliente-card h3{
+
+    margin-top:15px;
+
+    font-weight:bold;
+
+}
+
+.cliente-card p{
+
+    margin-bottom:8px;
+
+}

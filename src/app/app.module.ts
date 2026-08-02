@@ -20,6 +20,7 @@ import { UsuarioFormComponent } from './usuario/usuario-form/usuario-form.compon
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import { ImagenRotaDirective } from './imagen-rota.directive';
 import { ProductoComponent } from './producto/producto.component';
@@ -99,7 +100,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSelectModule,
     MatTabsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCardModule
   ],
   providers: [
     {
